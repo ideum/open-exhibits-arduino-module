@@ -1,7 +1,7 @@
 package {
 	import com.gestureworks.cml.components.PanoramicViewer;
 	import com.gestureworks.cml.core.CMLObjectList;
-	import com.gestureworks.cml.element.TouchContainer;
+	import com.gestureworks.cml.elements.TouchContainer;
 	import com.gestureworks.cml.utils.LinkedMap;
 	
 	import flash.display.DisplayObject;
@@ -43,13 +43,23 @@ package {
 
 		private function initMappers():void {
 			//initial set of mappers.  This can be removed to start from a blank slate
-			mappers = [ 
-				new DigitalMapper(2, 'tc1', 'visible', true),
-				new DigitalMapper(2, 'tc2', 'visible', false),
-				new AnalogMapper(2, 'tc3', 'x', 0, 1, 0, 750),
-				new AnalogMapper(2, 'tc4', 'y', 0, 1, 750, 0),
-				new RFIDMapper("", 'aspens', 'visible', true),
-				new DigitalMapper(2, 'rfid', 'visible', false)
+			mappers = [
+				new DigitalMapper(2, 'muscles-frontal', 'toggleIndex', false),
+				new DigitalMapper(2, 'skull-frontal', 'toggleIndex', false),
+				new DigitalMapper(2, 'brain-frontal', 'toggleIndex', false),
+								
+				new AnalogMapper(2, 'skull-frontal', 'alpha', .10, .40, 0, 1),
+				new AnalogMapper(2, 'brain-frontal', 'alpha', .50, .80, 0, 1),
+				
+				new DigitalMapper(2, 'muscles-lateral', 'toggleIndex', false),
+				new DigitalMapper(2, 'skull-lateral', 'toggleIndex', false),
+				new DigitalMapper(2, 'brain-lateral', 'toggleIndex', false),
+								
+				new AnalogMapper(2, 'skull-lateral', 'alpha', .10, .40, 0, 1),
+				new AnalogMapper(2, 'brain-lateral', 'alpha', .50, .80, 0, 1),
+		
+				new RFIDMapper("4800E4E29C", 'frontal', 'toggle', false),
+				new RFIDMapper("4800E5274B", 'lateral', 'toggle', false),
 			];
 			
 			for each (var mapper:Mapper in mappers) {

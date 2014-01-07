@@ -43,7 +43,7 @@ package
 		public var lastDigitalPin:Number = 49;
 		
 		public var HOST:String = "127.0.0.1";
-		public var PORT:Number = 5331;
+		public var PORT:Number = 5333;
 		
 		//public var COM:String = "cu.usbmodem411";
 		//public var BAUD:Number = 115200;

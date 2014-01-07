@@ -1,7 +1,7 @@
 package
 {
 	import com.gestureworks.cml.core.CMLObjectList;
-	import com.gestureworks.cml.element.TouchContainer;
+	import com.gestureworks.cml.elements.TouchContainer;
 
 	public class RFIDMapper implements Mapper
 	{
@@ -17,7 +17,7 @@ package
 			this.rfid = rfid;
 			this.cmlID = cmlID;
 			this.property = property;
-			this.inverse = inverse;
+			this.inverse = inverse;	
 		}
 		
 		public function fire(pin:Object, value:Number):void {

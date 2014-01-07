@@ -20,7 +20,7 @@ package
 			label.textColor = 0xCCCCCC;
 			label.text = label_text;
 			label.width = label_width;
-			label.height = 15;
+			label.height = 20;
 			label.selectable = false;
 			addChild(label);
 			
@@ -30,7 +30,7 @@ package
 			input.textColor = 0x0000CC;
 			input.text = input_text;
 			input.width = input_width;
-			input.height = 15;
+			input.height = 20;
 			input.type = TextFieldType.INPUT;
 			
 			addChild(input);

@@ -1,7 +1,7 @@
 package
 {
 	import com.gestureworks.cml.core.CMLObjectList;
-	import com.gestureworks.cml.element.TouchContainer;
+	import com.gestureworks.cml.elements.TouchContainer;
 	
 	public class AnalogMapper implements Mapper
 	{
@@ -15,6 +15,37 @@ package
 		
 		private var _viewer:ArduinoViewer;
 		
+		 
+		/**
+		 * toggles low-pass filter
+		 */
+		public var lowPass:Boolean = true;
+		
+		
+		/**
+		 * smoothing for low-pass filter
+		 * 0 ≤ alpha ≤ 1 ; a smaller value basically means more smoothing
+		 * See: http://en.wikipedia.org/wiki/Low-pass_filter#Discrete-time_realization
+		 * @default 0.15
+		 */
+		public var lowPassValue:Number = 0.05;
+		
+		 
+		/**
+		 * toggles rounding of data
+		 */
+		public var round:Boolean = true;
+		
+		/*
+		 * round to nearest nth value
+		 */
+		public var roundValue:Number = .001;
+		
+		
+		// stores output of low-pass filter
+		private var smoothedValue:Number;
+		
+		
 		public function AnalogMapper(pin:Number, cmlID:String, property:String, inMin:Number=0, inMax:Number=1.0, outMin:Number=0.0, outMax:Number=1.0)
 		{
 			this.pin = pin;
@@ -25,19 +56,45 @@ package
 			this.outMin = outMin;
 			this.outMax = outMax;
 		}
-		 
+		
 				
 		public function fire(pin:Object, value:Number):void {		
-			var obj:* = CMLObjectList.instance.getId(cmlID);
 			
+			if (lowPass) {
+				value = lowPassData(value, smoothedValue);
+				smoothedValue = value;
+			}
+			
+			if (round)
+				value = roundToNearest(roundValue, value);
+						
+			var obj:* = CMLObjectList.instance.getId(cmlID);
 			var newValue:Number = value;
 			if (Math.abs(this.inMax-this.inMin) < 0.00001) newValue=value;
 			else newValue=(value - this.inMin)*(this.outMax-this.outMin)/(this.inMax-this.inMin) + this.outMin;
-			
+						
 			if (obj && obj.hasOwnProperty(property)) {
 				obj[property] = newValue;
 			}
 		}
+		
+		
+		function roundToNearest(roundTo:Number, value:Number):Number{
+			return Math.round(value/roundTo)*roundTo;
+		}
+		
+		
+		 
+		/**
+		 * @see http://en.wikipedia.org/wiki/Low-pass_filter#Algorithmic_implementation
+		 * @see http://developer.android.com/reference/android/hardware/SensorEvent.html#values
+		 */
+		private function lowPassData(input:Number, output:Number) {
+			if (isNaN(output)) return input;
+			output = output + lowPassValue * (input - output);
+			return output;
+		}	
+				
 		
 		public function register(_viewer:ArduinoViewer):void
 		{			

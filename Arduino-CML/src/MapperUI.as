@@ -55,7 +55,7 @@ package
 			input_label.backgroundColor = inactiveColor;
 			input_label.textColor = 0xFFFFFF;
 			input_label.width = 45;
-			input_label.height = 15;
+			input_label.height = 20;
 			input_label.selectable = false;
 			
 			input_label.addEventListener(MouseEvent.CLICK, rollChangeType(1));
@@ -66,7 +66,7 @@ package
 			type.backgroundColor = 0xC000C0;
 			type.textColor = 0xFFFFFF;
 			type.width = 60;
-			type.height = 15;
+			type.height = 20;
 			type.selectable = false;
 			type.addEventListener(MouseEvent.CLICK, rollChangeType(-1));
 			
@@ -83,7 +83,7 @@ package
 			sep1.textColor = 0xCCCCCC;
 			sep1.text = "";
 			sep1.width = 10;
-			sep1.height = 15;
+			sep1.height = 20;
 			sep1.selectable = false;
 
 			cmlId = new LabeledInput(" >> map to >> CML ObjID", "Obj1", 140, 85);
@@ -97,7 +97,7 @@ package
 			inverse.backgroundColor = inactiveColor;
 			inverse.textColor = 0xFFFFFF;
 			inverse.selectable = false;
-			inverse.height = 15;
+			inverse.height = 20;
 			inverse.width = 45;
 			inverse.addEventListener(MouseEvent.CLICK, function(event:MouseEvent):void {
 				var inverse:TextField = event.target as TextField;
@@ -115,7 +115,7 @@ package
 			sep2.textColor = 0xCCCCCC;
 			sep2.text = "";
 			sep2.width = 10;
-			sep2.height = 15;
+			sep2.height = 20;
 			sep2.selectable = false;
 			
 			minusButton = new TextField();
@@ -124,7 +124,7 @@ package
 			minusButton.textColor = 0xFFFFFF;
 			minusButton.text = " - ";
 			minusButton.width = 10;
-			minusButton.height = 15;
+			minusButton.height = 20;
 			minusButton.selectable = false;
 			minusButton.addEventListener(MouseEvent.CLICK, function (event:MouseEvent):void {
 				var ui:Sprite = event.target.parent.parent;
@@ -413,7 +413,15 @@ package
 			second.x = first.x + first.width;
 		}
 		
-		
+		private function removeChildren ():void
+		{
+			while (this.numChildren)
+			{
+				this.removeChildAt(0);
+			}
+		}
+
+
 		
 	}
 }

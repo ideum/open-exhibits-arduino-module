@@ -1,7 +1,7 @@
 package
 {
 	import com.gestureworks.cml.core.CMLObjectList;
-	import com.gestureworks.cml.element.TouchContainer;
+	import com.gestureworks.cml.elements.TouchContainer;
 
 	public class DigitalMapper implements Mapper
 	{
@@ -21,8 +21,12 @@ package
 		}
 				
 		public function fire(pin:Object, value:Number):void {
+			
+			trace("digital fire", pin, value);
+			
 			var obj:* = CMLObjectList.instance.getId(cmlID);
-			if (obj && obj.hasOwnProperty(property)) {
+						
+			if (obj && obj.hasOwnProperty(property)) {				
 				obj[property] = inverse ? !value : value;
 			}
 		}

@@ -3,20 +3,25 @@ package
 	import ArduinoViewer;
 	
 	import com.gestureworks.cml.core.CMLObjectList;
-	import com.gestureworks.components.CMLDisplay;
+	import com.gestureworks.components.CMLDisplay; CMLDisplay;
 	import com.gestureworks.core.GestureWorks;
 	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.events.GWGestureEvent;
+	import com.gestureworks.cml.core.CMLParser;
 	
 	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.utils.Dictionary;
-
- CMLDisplay;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
+	import flash.display.StageDisplayState;
 	
-	[SWF(width = "1024", height = "768", backgroundColor = "0x000000", frameRate = "60")]
+	import com.gestureworks.cml.elements.ImageSlideshow2; ImageSlideshow2;
+	import com.gestureworks.cml.elements.Container2; Container2;
+		
+	[SWF(width = "1920", height = "1080", backgroundColor = "0XFFFFFF", frameRate = "30")]
 	
 	public class Main extends GestureWorks
 	{
@@ -29,6 +34,15 @@ package
 		{
 			super();
 			settingsPath = "library/cml/my_application.cml";
+			stage.scaleMode = StageScaleMode.SHOW_ALL;
+			stage.align = StageAlign.TOP_LEFT;
+			stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+			CMLParser.instance.addEventListener(CMLParser.COMPLETE, cmlInit);	
+		}
+		
+		private function cmlInit(event:Event):void
+		{
+			trace("cmlInit()");	
 			
 			_globalListeners = new Dictionary();
 			
@@ -42,7 +56,7 @@ package
 			addChild(mapper);
 			
 			//debug listen for all events
-			addListenerForAllEvents( function(event:Event):void { trace(event); } );	
+			addListenerForAllEvents( function(event:Event):void { trace(event); } );
 		}
 		
 		public function get mapper():ArduinoToCMLMapper
