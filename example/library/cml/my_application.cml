@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GestureWorksApplication 
+	key="ENTER OE KEY">	
+	
+	<Container2 id="lateral">
+		<ImageSlideshow2 id="muscles-lateral" autoplay="false" defaultIndex="0" fadeDuration="500" alpha="1"
+					src="library/assets/muscles-lateral.jpg,
+						 library/assets/muscles-lateral-annotated.jpg" />
+
+		<ImageSlideshow2 id="skull-lateral" autoplay="false" defaultIndex="0" fadeDuration="500" alpha="0"
+					src="library/assets/skull-lateral.jpg,
+						 library/assets/skull-lateral-annotated.jpg" />
+
+		<ImageSlideshow2 id="brain-lateral" autoplay="false" defaultIndex="0" fadeDuration="500" alpha="0" 
+					src="library/assets/brain-lateral.jpg,
+						 library/assets/brain-lateral-annotated.jpg" />
+	
+	</Container2>	
+	
+	
+	<Container2 id="frontal">
+		<ImageSlideshow2 id="muscles-frontal" autoplay="false" defaultIndex="0" fadeDuration="500" alpha="1"
+					src="library/assets/muscles-frontal.jpg,
+						 library/assets/muscles-frontal-annotated.jpg" />
+
+		<ImageSlideshow2 id="skull-frontal" autoplay="false" defaultIndex="0" fadeDuration="500" alpha="0"
+					src="library/assets/skull-frontal.jpg,
+						 library/assets/skull-frontal-annotated.jpg" />
+
+		<ImageSlideshow2 id="brain-frontal" autoplay="false" defaultIndex="0" fadeDuration="500" alpha="0" 
+					src="library/assets/brain-frontal.jpg,
+						 library/assets/brain-frontal-annotated.jpg" />
+	</Container2>
+	
+</GestureWorksApplication>
